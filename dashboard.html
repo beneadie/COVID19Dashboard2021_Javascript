@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html> 
+    <title>Covid-19 Data Hub</title>
+    
+    <head>
+    <h style="font-size: 80px; font-family: sans-serif;">COVID-19 DATA HUB DASHBOARD</h>
+        <div></div>
+        
+         <style>
+             
+             
+             *{
+                 text-align: center;
+                 align-content: center;
+             }
+    
+    table, th, td {
+          border:2px solid black;
+        align-content: center;
+            }
+             
+             table1, th, td {
+                   border:2px solid black;
+        align-content: center;
+                 
+             }
+            
+             
+    .dropbtn {
+      background-color: royalblue;
+      color: white;
+      padding: 40px;
+      font-size: 20px;
+      border: none;
+    }
+
+    .dropdown{
+      position: relative;
+      display: inline-block;
+    padding: 90px
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #royalblue;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: royalblue;}
+             
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        
+        .column {
+          float: left;
+          width: 32%;
+          padding: 5px;
+        }
+        
+        .grid-item {
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 3px solid rgba(0, 0, 0, 0.8);
+          padding: 93px;
+          font-size: 20px;
+          text-align: center;
+            color: black;
+        
+        
+        }
+        
+        .grid-container {
+          display: grid;
+          grid-column-gap: 30px;
+          grid-template-columns: auto auto auto;
+          background-color: #2196F3;
+          padding: 10px;
+        }
+
+.dropbtn1 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown1 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content1 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content1 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content1 a:hover {background-color: #ddd;}
+
+.dropdown1:hover .dropdown-content1 {display: block;}
+
+.dropdown1:hover .dropbtn1 {background-color: #3e8e41;}
+             
+             .dropbtn2 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content2 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content2 a:hover {background-color: #ddd;}
+
+.dropdown2:hover .dropdown-content2 {display: block;}
+
+.dropdown2:hover .dropbtn2 {background-color: #3e8e41;}
+        
+             
+             .dropbtn3 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown3 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content3 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content3 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content3 a:hover {background-color: #ddd;}
+
+.dropdown3:hover .dropdown-content3 {display: block;}
+
+.dropdown3:hover .dropbtn3 {background-color: #3e8e41;}
+    </style>
+    </head>
+<body>
+    <h id="totaltodate" style="font-family: serif; font-size: 40px"></h>
+    <br style="padding: 20px">
+    <h id="finalbit" style="font-family: serif; font-size: 40px;" ></h>
+    <br style="padding: 20px">
+    <h id="finalbit2" style="font-family: serif; font-size: 40px;" ></h>
+     <br>
+ 
+    
+    <button id="buttonint" onclick="intbutton(parsedcovid)">View as total number</button>
+    <button id="buttonper" onclick="perbutton(parsedcovid)">View as percentage</button>
+    <table style="width: 80%; align-content: center">
+  <tr>
+    <th>Age Group</th>
+    <th>Fully Vaccinated</th>
+  </tr>
+  <tr>
+    <td>80 and over</td>
+    <td id="fulvax80"></td>
+  </tr>
+  <tr>
+      <td>70 to 79</td>
+    <td id="fulvax70"></td>
+  </tr>
+    <tr>
+      <td>60 to 69</td>
+    <td id="fulvax60"></td>
+  </tr>
+        <tr>
+      <td>50 to 59</td>
+    <td id="fulvax50"></td>
+  </tr>
+    <tr>
+    <td>40 to 49</td>
+    <td id="fulvax40"></td>
+  </tr>  
+    <tr>
+    <td>30 to 39</td>
+    <td id="fulvax30"></td>
+  </tr>
+    <tr>
+    <td>20 to 29</td>
+    <td id="fulvax20"></td>
+  </tr>
+     <tr>
+    <td>10 to 19</td>
+    <td id="fulvax10"></td>
+  </tr>
+</table>
+    <div style="padding: 70px">
+    </div>
+    
+    
+     <h style="font-family: sans-serif; font-size: 27px">Weekly Stats</h>
+    <br>
+    <div1>
+    <h id="totalcur" style="font-size: 18px"></h>
+    <br>
+    <h id="modcur" style="font-size: 18px"></h>
+     <br>
+    <h id="pfizercur" style="font-size: 18px"></h>
+      <br>
+    <h id="janscur" style="font-size: 18px"></h>
+    <br>
+    <h id="AstraZenecacur" style="font-size: 18px"></h>
+      <br>
+        
+    <!-- https://www.w3schools.com/howto/howto_js_dropdown.asp --> 
+    <div class="dropdown">
+  <button class="dropbtn">Select Week for Vaccine Stats</button>
+  <div class="dropdown-content">
+    <button id="w1" onclick="changeweek(parsedcovid, 1)">Week 1</button>
+    <button id="w2" onclick="changeweek(parsedcovid, 2)">Week 2</button>
+    <button id="w3" onclick="changeweek(parsedcovid, 3)">Week 3</button>
+    <button id="w4" onclick="changeweek(parsedcovid, 4)">Week 4</button>
+    <button id="w5" onclick="changeweek(parsedcovid, 5)">Week 5</button>
+    <button id="w6" onclick="changeweek(parsedcovid, 6)">Week 6</button>
+    <button id="w7" onclick="changeweek(parsedcovid, 7)">Week 7</button>
+    <button id="w8" onclick="changeweek(parsedcovid, 8)">Week 8</button>
+    <button id="w9" onclick="changeweek(parsedcovid, 9)">Week 9</button>
+    <button id="w10" onclick="changeweek(parsedcovid, 10)">Week 10</button>
+    <button id="w11" onclick="changeweek(parsedcovid, 11)">Week 11</button>
+    <button id="w12" onclick="changeweek(parsedcovid, 12)">Week 12</button>
+    <button id="w13" onclick="changeweek(parsedcovid, 13)">Week 13</button>
+    <button id="w14" onclick="changeweek(parsedcovid, 14)">Week 14</button>
+    <button id="w15" onclick="changeweek(parsedcovid, 15)">Week 15</button>
+    <button id="w16" onclick="changeweek(parsedcovid, 16)">Week 16</button>
+    <button id="w17" onclick="changeweek(parsedcovid, 17)">Week 17</button>
+    <button id="w18" onclick="changeweek(parsedcovid, 18)">Week 18</button>
+    <button id="w19" onclick="changeweek(parsedcovid, 19)">Week 19</button>
+    <button id="w20" onclick="changeweek(parsedcovid, 20)">Week 20</button>
+    <button id="w21" onclick="changeweek(parsedcovid, 21)">Week 21</button>
+    <button id="w22" onclick="changeweek(parsedcovid, 22)">Week 22</button>
+    <button id="w23" onclick="changeweek(parsedcovid, 23)">Week 23</button>
+    <button id="w24" onclick="changeweek(parsedcovid, 24)">Week 24</button>
+    <button id="w25" onclick="changeweek(parsedcovid, 25)">Week 25</button>
+    <button id="w26" onclick="changeweek(parsedcovid, 26)">Week 26</button>
+    <button id="w27" onclick="changeweek(parsedcovid, 27)">Week 27</button>
+    <button id="w28" onclick="changeweek(parsedcovid, 28)">Week 28</button>
+    <button id="w29" onclick="changeweek(parsedcovid, 29)">Week 29</button>
+    <button id="w30" onclick="changeweek(parsedcovid, 30)">Week 30</button>
+    <button id="w31" onclick="changeweek(parsedcovid, 31)">Week 31</button>
+    <button id="w32" onclick="changeweek(parsedcovid, 32)">Week 32</button>
+    <button id="w33" onclick="changeweek(parsedcovid, 33)">Week 33</button>
+    <button id="w34" onclick="changeweek(parsedcovid, 34)">Week 34</button>
+    <button id="w35" onclick="changeweek(parsedcovid, 35)">Week 35</button>
+    <button id="w36" onclick="changeweek(parsedcovid, 36)">Week 36</button>
+    <button id="w37" onclick="changeweek(parsedcovid, 37)">Week 37</button>
+    <button id="w38" onclick="changeweek(parsedcovid, 38)">Week 38</button>
+    <button id="w39" onclick="changeweek(parsedcovid, 39)">Week 39</button>
+    <button id="w40" onclick="changeweek(parsedcovid, 40)">Week 40</button>
+    <button id="w41" onclick="changeweek(parsedcovid, 41)">Week 41</button>
+    <button id="w42" onclick="changeweek(parsedcovid, 42)">Week 42</button>
+    <button id="w43" onclick="changeweek(parsedcovid, 43)">Week 43</button>
+    <button id="w44" onclick="changeweek(parsedcovid, 44)">Week 44</button>
+    <button id="w45" onclick="changeweek(parsedcovid, 45)">Week 45</button>
+    <button id="w46" onclick="changeweek(parsedcovid, 46)">Week 46</button>
+    <button id="w47" onclick="changeweek(parsedcovid, 47)">Week 47</button>
+    <button id="w48" onclick="changeweek(parsedcovid, 48)">Week 48</button>
+    <button id="w49" onclick="changeweek(parsedcovid, 49)">Week 49</button>
+    <button id="w50" onclick="changeweek(parsedcovid, 50)">Week 50</button>
+    <button id="w51" onclick="changeweek(parsedcovid, 51)">Week 51</button>
+    <button id="w52" onclick="changeweek(parsedcovid, 52)">Week 52</button>
+    <button id="w53" onclick="changeweek(parsedcovid, 53)">Week 53</button>
+      
+      
+      
+      
+  </div>
+        
+    
+   
+           <!--https://www.w3schools.com/howto/howto_css_dropdown.asp-->
+     <br>
+        <div style="padding: 110px;">
+     <div class="dropdown1"; style="padding: 50px">
+  <button class="dropbtn1">Select First County</button>
+  <div class="dropdown-content1">
+    <button id="c1" onclick="poptable(parseddetails, 1)">Carlow</button>
+    <button id="c2" onclick="poptable(parseddetails, 2)">Cavan</button>
+    <button id="c3" onclick="poptable(parseddetails, 3)">Clare</button>
+    <button id="c4" onclick="poptable(parseddetails, 4)">Cork</button>
+    <button id="c5" onclick="poptable(parseddetails, 5)">Donegal</button>
+    <button id="c6" onclick="poptable(parseddetails, 6)">Dublin</button>
+    <button id="c7" onclick="poptable(parseddetails, 7)">Galway</button>
+    <button id="c8" onclick="poptable(parseddetails, 8)">Kerry</button>
+    <button id="c9" onclick="poptable(parseddetails, 9)">Kildare</button>
+    <button id="c10" onclick="poptable(parseddetails, 10)">Kilkenny</button>
+    <button id="c11" onclick="poptable(parseddetails, 11)">Laois</button>
+    <button id="c12" onclick="poptable(parseddetails, 12)">Leitrim</button>
+    <button id="c13" onclick="poptable(parseddetails, 13)">Limerick</button>
+    <button id="c14" onclick="poptable(parseddetails, 14)">Longford</button>
+    <button id="c15" onclick="poptable(parseddetails, 15)">Louth</button>
+    <button id="c16" onclick="poptable(parseddetails, 16)">Mayo</button>
+    <button id="c17" onclick="poptable(parseddetails, 17)">Meath</button>
+    <button id="c18" onclick="poptable(parseddetails, 18)">Monoghan</button>
+    <button id="c19" onclick="poptable(parseddetails, 19)">Offaly</button>
+    <button id="c20" onclick="poptable(parseddetails, 20)">Roscommon</button>
+    <button id="c21" onclick="poptable(parseddetails, 21)">Sligo</button>
+    <button id="c22" onclick="poptable(parseddetails, 22)">Tipperary</button>
+    <button id="c23" onclick="poptable(parseddetails, 23)">Waterford</button>
+    <button id="c24" onclick="poptable(parseddetails, 24)">Westmeath</button>
+    <button id="c25" onclick="poptable(parseddetails, 25)">Wexford</button>
+    <button id="c26" onclick="poptable(parseddetails, 26)">Wicklow</button>
+      
+      
+  </div>
+       <!--https://www.w3schools.com/howto/howto_css_dropdown.asp-->
+      <div class="dropdown2"; style="padding: 50px">
+  <button class="dropbtn2">Select Second County</button>
+  <div class="dropdown-content2">
+    <button id="c1a" onclick="poptable2(parseddetails, 1)">Carlow</button>
+    <button id="c2a" onclick="poptable2(parseddetails, 2)">Cavan</button>
+    <button id="c3a" onclick="poptable2(parseddetails, 3)">Clare</button>
+    <button id="c4a" onclick="poptable2(parseddetails, 4)">Cork</button>
+    <button id="c5a" onclick="poptable2(parseddetails, 5)">Donegal</button>
+    <button id="c6a" onclick="poptable2(parseddetails, 6)">Dublin</button>
+    <button id="c7a" onclick="poptable2(parseddetails, 7)">Galway</button>
+    <button id="c8a" onclick="poptable2(parseddetails, 8)">Kerry</button>
+    <button id="c9a" onclick="poptable2(parseddetails, 9)">Kildare</button>
+    <button id="c10a" onclick="poptable2(parseddetails, 10)">Kilkenny</button>
+    <button id="c11a" onclick="poptable2(parseddetails, 11)">Laois</button>
+    <button id="c12a" onclick="poptable2(parseddetails, 12)">Leitrim</button>
+    <button id="c13a" onclick="poptable2(parseddetails, 13)">Limerick</button>
+    <button id="c14a" onclick="poptable2(parseddetails, 14)">Longford</button>
+    <button id="c15a" onclick="poptable2(parseddetails, 15)">Louth</button>
+    <button id="c16a" onclick="poptable2(parseddetails, 16)">Mayo</button>
+    <button id="c17a" onclick="poptable2(parseddetails, 17)">Meath</button>
+    <button id="c18a" onclick="poptable2(parseddetails, 18)">Monoghan</button>
+    <button id="c19a" onclick="poptable2(parseddetails, 19)">Offaly</button>
+    <button id="c20a" onclick="poptable2(parseddetails, 20)">Roscommon</button>
+    <button id="c21a" onclick="poptable2(parseddetails, 21)">Sligo</button>
+    <button id="c22a" onclick="poptable2(parseddetails, 22)">Tipperary</button>
+    <button id="c23a" onclick="poptable2(parseddetails, 23)">Waterford</button>
+    <button id="c24a" onclick="poptable2(parseddetails, 24)">Westmeath</button>
+    <button id="c25a" onclick="poptable2(parseddetails, 25)">Wexford</button>
+    <button id="c26a" onclick="poptable2(parseddetails, 26)">Wicklow</button>
+      
+      
+  </div>
+          <!--https://www.w3schools.com/howto/howto_css_dropdown.asp-->
+         <div class="dropdown3"; style="padding: 50px">
+  <button class="dropbtn3">Select Third County</button>
+  <div class="dropdown-content3">
+    <button id="c1b" onclick="poptable3(parseddetails, 1)">Carlow</button>
+    <button id="c2b" onclick="poptable3(parseddetails, 2)">Cavan</button>
+    <button id="c3b" onclick="poptable3(parseddetails, 3)">Clare</button>
+    <button id="c4b" onclick="poptable3(parseddetails, 4)">Cork</button>
+    <button id="c5b" onclick="poptable3(parseddetails, 5)">Donegal</button>
+    <button id="c6b" onclick="poptable3(parseddetails, 6)">Dublin</button>
+    <button id="c7b" onclick="poptable3(parseddetails, 7)">Galway</button>
+    <button id="c8b" onclick="poptable3(parseddetails, 8)">Kerry</button>
+    <button id="c9b" onclick="poptable3(parseddetails, 9)">Kildare</button>
+    <button id="c10b" onclick="poptable3(parseddetails, 10)">Kilkenny</button>
+    <button id="c11b" onclick="poptable3(parseddetails, 11)">Laois</button>
+    <button id="c12b" onclick="poptable3(parseddetails, 12)">Leitrim</button>
+    <button id="c13b" onclick="poptable3(parseddetails, 13)">Limerick</button>
+    <button id="c14b" onclick="poptable3(parseddetails, 14)">Longford</button>
+    <button id="c15b" onclick="poptable3(parseddetails, 15)">Louth</button>
+    <button id="c16b" onclick="poptable3(parseddetails, 16)">Mayo</button>
+    <button id="c17b" onclick="poptable3(parseddetails, 17)">Meath</button>
+    <button id="c18b" onclick="poptable3(parseddetails, 18)">Monoghan</button>
+    <button id="c19b" onclick="poptable3(parseddetails, 19)">Offaly</button>
+    <button id="c20b" onclick="poptable3(parseddetails, 20)">Roscommon</button>
+    <button id="c21b" onclick="poptable3(parseddetails, 21)">Sligo</button>
+    <button id="c22b" onclick="poptable3(parseddetails, 22)">Tipperary</button>
+    <button id="c23b" onclick="poptable3(parseddetails, 23)">Waterford</button>
+    <button id="c24b" onclick="poptable3(parseddetails, 24)">Westmeath</button>
+    <button id="c25b" onclick="poptable3(parseddetails, 25)">Wexford</button>
+    <button id="c26b" onclick="poptable3(parseddetails, 26)">Wicklow</button>
+      
+      
+             </div>
+          </div>
+          <br>
+          
+    <div class="grid-container">
+    
+      <div class="grid-item">
+          <h id="name1">Name</h>
+          <br>
+          <h id="popu1">Population</h>
+           <br>
+          <h id="confi1">Confirmed Cases</h>
+           <br>
+          <h id="ppcc1">Population Per Case</h>
+           <br>
+          <h id="per100k1">Cases Per 100,000 People</h>
+        </div>
+
+      <div class="grid-item">
+         <h id="name2">Name</h>
+           <br>
+          <h id="popu2">Population</h>
+           <br>
+          <h id="confi2">Confirmed Cases</h>
+           <br>
+          <h id="ppcc2">Population Per Case</h>
+           <br>
+          <h id="per100k2">Cases Per 100,000 People</h>
+        </div>
+
+      <div class="grid-item">
+          <h id="name3">Name</h>
+           <br>
+          <h id="popu3">Population</h>
+           <br>
+          <h id="confi3">Confirmed Cases</h>
+           <br>
+          <h id="ppcc3">Population Per Case</h>
+           <br>
+          <h id="per100k3">Cases Per 100,000 People</h>
+        </div>
+          
+          </div>
+    </body>
+   
+    <script>
+    
+       var parsedcovid;
+        
+        
+        var xmlhttp1 = new XMLHttpRequest();
+        var url = "https://services-eu1.arcgis.com/z6bHNio59iTqqSUY/arcgis/rest/services/COVID19_Weekly_Vaccination_Figures/FeatureServer/0/query?where=1%3D1&outFields=Moderna,Pfizer,Janssen,AstraZeneca,Week,ExtractDate,TotalweeklyVaccines,FullyPer_Age70to79,FullyPer_Age50to59,FullyPer_Age60to69,FullyPer_80_,FullyPer_Age40to49,FullyPer_Age20to29,FullyPer_Age30to39,FullyPer_Age10to19,Fully_Age10to19,Fully_Age20to29,Fully_Age30to39,Fully_Age40to49,Fully_Age50to59,Fully_Age60to69,Fully_Age70to79,Fully_Age80_&outSR=4326&f=json";
+        
+        xmlhttp1.onreadystatechange = function() {
+            
+            if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
+                
+                parsedcovid = JSON.parse(xmlhttp1.responseText);
+                
+                var covidstring = JSON.stringify(parsedcovid)
+            
+                console.log(parsedcovid);
+                
+                myfunction(parsedcovid);
+                
+                agegroupfunction(parsedcovid);
+                
+                totaladmin(parsedcovid);
+                
+                
+                
+
+            }
+            
+        }
+        
+        xmlhttp1.open("GET", url, true) ;
+        xmlhttp1.send();
+        
+        var parseddetails;
+        
+        var xmlhttp2 = new XMLHttpRequest();
+        var url = "https://services1.arcgis.com/eNO7HHeQ3rUcBllm/arcgis/rest/services/Covid19CountyStatisticsHPSCIrelandOpenData/FeatureServer/0/query?where=1%3D1&outFields=ORIGID,CountyName,PopulationCensus16,PopulationProportionCovidCases,ConfirmedCovidCases&outSR=4326&f=json";
+        
+        xmlhttp2.onreadystatechange = function() {
+            
+            if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+                
+                parseddetails = JSON.parse(xmlhttp2.responseText);
+                
+                var covidstring2 = JSON.stringify(parseddetails);
+            
+                console.log(parseddetails);
+                
+ 
+             highfunction(parseddetails);
+                
+                lowfunction(parseddetails);
+                
+
+            }
+        }
+            
+        xmlhttp2.open("GET", url, true) ;
+        xmlhttp2.send();
+            
+        
+         function totaladmin(obj) {
+        let totalall = 0;
+        let counterall = 1;
+             //started at 1 because first week in data is 2020 week 53
+        for(var i = 1; i < obj.features.length; i++){
+            let eachweek = obj.features[counterall];
+            totalall += eachweek.attributes.TotalweeklyVaccines;
+            counterall += 1 
+            
+             document.getElementById("totaltodate").innerHTML ="Total Vaccines Administired in 2021: " + totalall;
+
+        }
+         }
+             
+        function myfunction(obj){
+            
+           
+            
+            let covcurrent = obj.features[obj.features.length -1];
+            console.log(covcurrent)
+            
+          
+        
+            document.getElementById("totalcur").innerHTML ="Total Vaccines Administired this Week: " + covcurrent.attributes.TotalweeklyVaccines;
+            document.getElementById("modcur").innerHTML ="Moderna Vaccines Administired this Week: " + covcurrent.attributes.Moderna;
+            document.getElementById("pfizercur").innerHTML ="Pfizer Vaccines Administired this Week: " + covcurrent.attributes.Pfizer;
+            document.getElementById("janscur").innerHTML ="Janssen Vaccines Administired this Week: " + covcurrent.attributes.Janssen;
+            document.getElementById("AstraZenecacur").innerHTML ="AstraZeneca Vaccines Administired this Week: " + covcurrent.attributes.AstraZeneca;
+            
+        }
+        
+        function agegroupfunction(obj) {
+            let totalful80= 0;
+            let counter80 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter80];
+                totalful80 += eachweek.attributes.Fully_Age80_;
+                counter80 += 1
+                document.getElementById("fulvax80").innerHTML = totalful80;
+            }
+            
+            let totalful70= 0;
+            let counter70 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter70];
+                totalful70 += eachweek.attributes.Fully_Age70to79;
+                counter70 += 1
+                document.getElementById("fulvax70").innerHTML = totalful70;
+            }
+            
+                let totalful60= 0;
+            let counter60 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter60];
+                totalful60 += eachweek.attributes.Fully_Age60to69;
+                counter60 += 1
+                document.getElementById("fulvax60").innerHTML = totalful60;
+            }
+            
+                let totalful50= 0;
+            let counter50 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter50];
+                totalful50 += eachweek.attributes.Fully_Age50to59;
+                counter50 += 1
+                document.getElementById("fulvax50").innerHTML = totalful50;
+            }
+            
+                let totalful40= 0;
+            let counter40 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter40];
+                totalful40 += eachweek.attributes.Fully_Age40to49;
+                counter40 += 1
+                document.getElementById("fulvax40").innerHTML = totalful40;
+            }
+            
+                let totalful30= 0;
+            let counter30 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter30];
+                totalful30 += eachweek.attributes.Fully_Age30to39;
+                counter30 += 1
+                document.getElementById("fulvax30").innerHTML = totalful30;
+            }
+            
+                let totalful20= 0;
+            let counter20 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter20];
+                totalful20 += eachweek.attributes.Fully_Age20to29;
+                counter20 += 1
+                document.getElementById("fulvax20").innerHTML = totalful20;
+            }
+            
+                let totalful10= 0;
+            let counter10 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter10];
+                totalful10 += eachweek.attributes.Fully_Age10to19;
+                counter10 += 1
+                document.getElementById("fulvax10").innerHTML = totalful10;
+            }
+            
+        
+            
+    
+            }
+            
+        function intbutton(obj) {
+        let totalful80= 0;
+            let counter80 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter80];
+                totalful80 += eachweek.attributes.Fully_Age80_;
+                counter80 += 1
+                document.getElementById("fulvax80").innerHTML = totalful80;
+            }
+            
+            let totalful70= 0;
+            let counter70 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter70];
+                totalful70 += eachweek.attributes.Fully_Age70to79;
+                counter70 += 1
+                document.getElementById("fulvax70").innerHTML = totalful70;
+            }
+            
+                let totalful60= 0;
+            let counter60 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter60];
+                totalful60 += eachweek.attributes.Fully_Age60to69;
+                counter60 += 1
+                document.getElementById("fulvax60").innerHTML = totalful60;
+            }
+            
+                let totalful50= 0;
+            let counter50 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter50];
+                totalful50 += eachweek.attributes.Fully_Age50to59;
+                counter50 += 1
+                document.getElementById("fulvax50").innerHTML = totalful50;
+            }
+            
+                let totalful40= 0;
+            let counter40 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter40];
+                totalful40 += eachweek.attributes.Fully_Age40to49;
+                counter40 += 1
+                document.getElementById("fulvax40").innerHTML = totalful40;
+            }
+            
+                let totalful30= 0;
+            let counter30 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter30];
+                totalful30 += eachweek.attributes.Fully_Age30to39;
+                counter30 += 1
+                document.getElementById("fulvax30").innerHTML = totalful30;
+            }
+            
+                let totalful20= 0;
+            let counter20 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter20];
+                totalful20 += eachweek.attributes.Fully_Age20to29;
+                counter20 += 1
+                document.getElementById("fulvax20").innerHTML = totalful20;
+            }
+            
+                let totalful10= 0;
+            let counter10 = 0;
+            for(var i = 0; i < obj.features.length; i++){
+                let eachweek = obj.features[counter10];
+                totalful10 += eachweek.attributes.Fully_Age10to19;
+                counter10 += 1
+                document.getElementById("fulvax10").innerHTML = totalful10;
+            }
+        
+        }
+        
+        function perbutton(obj) {
+            
+            let covper = obj.features[obj.features.length -1];
+            console.log(covper)
+            
+            let per80 = (covper.attributes.FullyPer_80_) * 100;
+            let per70 = (covper.attributes.FullyPer_Age70to79) * 100;
+            let per60 = (covper.attributes.FullyPer_Age60to69) * 100;
+            let per50 = (covper.attributes.FullyPer_Age50to59) * 100;
+            let per40 = (covper.attributes.FullyPer_Age40to49) * 100;
+            let per30 = (covper.attributes.FullyPer_Age30to39) * 100;
+            let per20 = (covper.attributes.FullyPer_Age20to29) * 100;
+            let per10 = (covper.attributes.FullyPer_Age10to19) * 100;
+       
+                document.getElementById("fulvax80").innerHTML = per80 + "%";
+          
+                document.getElementById("fulvax70").innerHTML = per70 +"%";
+          
+                document.getElementById("fulvax60").innerHTML = per60 +"%";
+            
+                document.getElementById("fulvax50").innerHTML = per50 +"%";
+          
+                document.getElementById("fulvax40").innerHTML = per40 +"%";
+          
+                document.getElementById("fulvax30").innerHTML = per30 +"%"; 
+         
+                document.getElementById("fulvax20").innerHTML = per20 +"%";
+           
+                document.getElementById("fulvax10").innerHTML = per10 +"%";
+            }
+        
+         
+        function changeweek(obj, w) {
+            
+            
+            var chosenw = obj.features[w];
+            
+            document.getElementById("totalcur").innerHTML ="Total Vaccines Administired this Week: " + chosenw.attributes.TotalweeklyVaccines;
+            document.getElementById("modcur").innerHTML ="Moderna Vaccines Administired this Week: " + chosenw.attributes.Moderna;
+            document.getElementById("pfizercur").innerHTML ="Pfizer Vaccines Administired this Week: " + chosenw.attributes.Pfizer;
+            document.getElementById("janscur").innerHTML ="Janssen Vaccines Administired this Week: " + chosenw.attributes.Janssen;
+            document.getElementById("AstraZenecacur").innerHTML ="AstraZeneca Vaccines Administired this Week: " + chosenw.attributes.AstraZeneca;
+            
+            
+        }
+          
+        function poptable(obj, row) {
+            
+            var realrow = row - 1
+            var chosencounty = obj.features[realrow];
+            
+            var popper100k = Math.round((chosencounty.attributes.ConfirmedCovidCases / chosencounty.attributes.PopulationCensus16) * 100000);
+            
+            
+            
+            document.getElementById("name1").innerHTML = "County: " + chosencounty.attributes.CountyName;
+            document.getElementById("popu1").innerHTML = "Population: " + chosencounty.attributes.PopulationCensus16;
+            document.getElementById("ppcc1").innerHTML = "Population Proportionate to Cases: " + chosencounty.attributes.PopulationProportionCovidCases;
+            document.getElementById("confi1").innerHTML = "Confirmed Covid Cases: " + chosencounty.attributes.ConfirmedCovidCases;
+            document.getElementById("per100k1").innerHTML = "Covid Cases Per 100,000 People: " + popper100k;
+            
+            
+        }
+        
+        function poptable2(obj, row) {
+            
+            var realrow = row - 1
+            var chosencounty = obj.features[realrow];
+            
+            var popper100k = Math.round((chosencounty.attributes.ConfirmedCovidCases / chosencounty.attributes.PopulationCensus16) * 100000);
+            document.getElementById("name2").innerHTML = "County: " + chosencounty.attributes.CountyName;
+            document.getElementById("popu2").innerHTML = "Population: " + chosencounty.attributes.PopulationCensus16;
+            document.getElementById("ppcc2").innerHTML = "Population Proportionate to Cases: " +  chosencounty.attributes.PopulationProportionCovidCases;
+            document.getElementById("confi2").innerHTML = "Confirmed Covid Cases: " + chosencounty.attributes.ConfirmedCovidCases;
+            document.getElementById("per100k2").innerHTML = "Covid Cases Per 100,000 People: " + popper100k;
+            
+        }
+        
+        function poptable3(obj, row) {
+            
+            var realrow = row - 1
+            var chosencounty = obj.features[realrow];
+            
+            var popper100k = Math.round((chosencounty.attributes.ConfirmedCovidCases / chosencounty.attributes.PopulationCensus16) * 100000);
+            
+            
+            
+            document.getElementById("name3").innerHTML = "County: " + chosencounty.attributes.CountyName;
+            document.getElementById("popu3").innerHTML = "Population: " + chosencounty.attributes.PopulationCensus16;
+            document.getElementById("ppcc3").innerHTML = "Population Proportionate to Cases: " +  chosencounty.attributes.PopulationProportionCovidCases;
+            document.getElementById("confi3").innerHTML = "Confirmed Covid Cases: " + chosencounty.attributes.ConfirmedCovidCases;
+            document.getElementById("per100k3").innerHTML = "Covid Cases Per 100,000 People: " + popper100k;
+            
+            
+        }
+        
+        function highfunction(obj) {
+        var highcounty = "";   
+        var highnum = 0;
+        var counterall = 0;
+        
+        for(var i = 0; i < obj.features.length; i++){
+            var eachweek = obj.features[counterall];
+            
+            var cc100k = (eachweek.attributes.ConfirmedCovidCases / eachweek.attributes.PopulationCensus16) * 100000;
+            if (cc100k > highnum) {
+                var highnum = cc100k;
+                var highcounty = eachweek.attributes.CountyName;
+            } else {
+                
+            }
+            
+            counterall += 1 
+            
+            document.getElementById("finalbit").innerHTML = "County with most cases per 100,000 people: " + highcounty;
+            	
+}
+        }
+        
+        
+        
+        function lowfunction(obj) {
+        var lowcounty = "";   
+        var lownum = 100000;
+        var counterall = 0;
+        
+        for(var i = 0; i < obj.features.length; i++){
+            
+            var eachweek = obj.features[counterall];
+            
+            var cc100k = (eachweek.attributes.ConfirmedCovidCases / eachweek.attributes.PopulationCensus16) * 100000;
+            if (cc100k < lownum) {
+                var lownum = cc100k;
+                var lowcounty = eachweek.attributes.CountyName;
+            }
+            else {
+                
+            }
+            document.getElementById("finalbit2").innerHTML = "County with least cases per 100,000 people: " +  lowcounty;
+            
+            counterall += 1 
+        
+            
+           
+        
+        }
+            	
+}
+            
+        
+      
+    
+    </script>
+    
+    
+    
+
+</html>
